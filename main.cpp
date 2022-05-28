@@ -5,8 +5,6 @@
 
 #define LOX_VERSION "0.0.1"
 
-typedef unsigned char BYTE;
-
 void run(const std::string &source) {
     // run scanner
     // run parser
