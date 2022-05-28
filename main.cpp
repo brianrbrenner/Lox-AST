@@ -56,6 +56,6 @@ int main(int argc, char * argv[]) {
         // maybe make a runFile(argv[0]) somewhere else?
         std::ofstream file (argv[0]);
     } else {
-        // runPrompt();
+        runPrompt();
     }
 }
