@@ -1,5 +1,6 @@
 # PLOX
-A speedy interpreter for the Lox programming language.
+A speedy interpreter for the Lox programming language. Based on the language from the book Crafting interpreters
+by Bob Nystrom!
 
 Chapter in Progress
 ---
