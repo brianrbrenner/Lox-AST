@@ -12,9 +12,12 @@ public:
 private:
     void scanToken();
     char advance();
+    char peek();
     bool isAtEnd();
     void addToken(TokenType);
     void addToken(TokenType, std::any);
+    bool match(char);
+    void string();
 
     std::vector<Token> tokens;
     std::string source;
