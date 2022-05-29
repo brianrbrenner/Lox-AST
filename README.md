@@ -12,6 +12,10 @@ How To Build
 
 Run CMake in build dir
 ```sh
+# I recommend making build dir in the project home dir
 cmake <src-dir>
+
+# then build
+make plox
 ```
 Executable to come!
