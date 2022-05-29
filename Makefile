@@ -1,7 +1,7 @@
 ###############################################################
 # Variables
 CPP          = clang++
-CPP_FLAGS    = -g -Werror -W -Wunused -Wuninitialized -Wshadow -std=c++11
+CPP_FLAGS    = -g -Werror -W -Wunused -Wuninitialized -Wshadow -std=c++14
 
 ###############################################################
 # Compile plox 
