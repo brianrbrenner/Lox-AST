@@ -6,9 +6,9 @@ CPP_FLAGS    = -g -Werror -W -Wunused -Wuninitialized -Wshadow -std=c++11
 ###############################################################
 # Compile plox 
 #
-plox: plox.cpp
-	$(CPP) -c $(OPTIONS) plox.cpp -o plox.o
+Lox.o: Lox.hpp Lox.cpp
+	$(CPP) -c $(CPP_FLAGS) Lox.cpp
+Lox: Lox.hpp Lox.cpp
+	$(CPP) -c $(CPP_FLAGS) Lox.cpp -o Lox.o
 
-plox.o: plox.cpp
-	$(CPP) -c $(OPTIONS) plox.cpp -o plox.o
 

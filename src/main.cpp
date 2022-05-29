@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <cstring>
 #include <fstream>
-#include "../include/lox/Lox.hpp"
+#include "Lox.hpp"
 
 int main(int argc, char * argv[]) {
     if (std::strlen(argv[0]) > 1) {
