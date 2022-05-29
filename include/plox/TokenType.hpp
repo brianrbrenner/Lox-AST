@@ -1,3 +1,7 @@
+#ifndef TOKENTYPE
+#define TOKENTYPE
+
+namespace Lox {
 enum TokenType {
     // Single character TokenType
     LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE, 
@@ -18,3 +22,6 @@ enum TokenType {
 
     EOF
 };
+}
+
+#endif

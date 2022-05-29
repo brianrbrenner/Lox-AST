@@ -2,23 +2,31 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 namespace Lox {
 class Scanner {
 public:
-    Scanner(std::string source) { this->source = source; }
+    Scanner(std::string source);
     std::vector<Token> scanTokens();
 
 private:
     void scanToken();
-    char advance();
-    char peek();
-    bool isAtEnd();
     void addToken(TokenType);
     void addToken(TokenType, std::any);
-    bool match(char);
     void string();
+    void number();
+    void identifier();
+    char advance();
+    char peek() const;
+    char peekNext() const;
+    bool isAtEnd() const;
+    bool isDigit(char);
+    bool isAlpha(char);
+    bool isAlphaNumeric(char);
+    bool match(char);
 
+    std::unordered_map<std::string, TokenType> keywords;
     std::vector<Token> tokens;
     std::string source;
     int start = 0;
