@@ -33,7 +33,7 @@ std::vector<Token> Scanner::scanTokens() {
         start = current;
         scanToken();
     }
-    tokens.emplace_back(TokenType EOF, "", line);
+    tokens.emplace_back(TokenType::TokenEOF, "", line);
     return tokens;
 }
 
@@ -63,7 +63,7 @@ void Scanner::number() {
         }
     }
 
-    addToken(NUMBER, std::stod(source.substr(start, current - start)));
+    addToken(TokenType::NUMBER, std::stod(source.substr(start, current - start)));
 }
 
 void Scanner::string() {
@@ -82,7 +82,7 @@ void Scanner::string() {
 
     // Trim surrounding quotes
     std::string value = source.substr(start + 1, current - start - 2);
-    addToken(STRING, value);
+    addToken(TokenType::STRING, value);
 }
 
 void Scanner::identifier() {
@@ -145,36 +145,36 @@ void Scanner::scanToken() {
     switch(c) {
         // single character tokens
         case '(':
-            addToken(LEFT_PAREN); break;
+            addToken(TokenType::LEFT_PAREN); break;
         case ')':
-            addToken(RIGHT_PAREN); break;
+            addToken(TokenType::RIGHT_PAREN); break;
         case '{':
-            addToken(LEFT_BRACE); break;
+            addToken(TokenType::LEFT_BRACE); break;
         case '}':
-            addToken(RIGHT_BRACE); break;
+            addToken(TokenType::RIGHT_BRACE); break;
         case ',':
-            addToken(COMMA); break;
+            addToken(TokenType::COMMA); break;
         case '.':
-            addToken(DOT); break;
+            addToken(TokenType::DOT); break;
         case '-':
-            addToken(MINUS); break;
+            addToken(TokenType::MINUS); break;
         case '+':
-            addToken(PLUS); break;
+            addToken(TokenType::PLUS); break;
         case ';':
-            addToken(SEMICOLON); break;
+            addToken(TokenType::SEMICOLON); break;
         case '*':
-            addToken(STAR); break; 
+            addToken(TokenType::STAR); break; 
         case '!':
-            addToken(match('=') ? BANG_EQUAL : BANG);
+            addToken(match('=') ? TokenType::BANG_EQUAL : TokenType::BANG);
             break;
         case '=':
-            addToken(match('=') ? EQUAL_EQUAL : EQUAL);
+            addToken(match('=') ? TokenType::EQUAL_EQUAL : TokenType::EQUAL);
             break;
         case '<':
-            addToken(match('=') ? LESS_EQUAL : LESS);
+            addToken(match('=') ? TokenType::LESS_EQUAL : TokenType::LESS);
             break;
         case '>':
-            addToken(match('=') ? GREATER_EQUAL : GREATER);
+            addToken(match('=') ? TokenType::GREATER_EQUAL : TokenType::GREATER);
             break;
         case '/':
             if (match('/')) {
@@ -183,7 +183,7 @@ void Scanner::scanToken() {
                     advance();
                 }
             } else {
-                addToken(SLASH);
+                addToken(TokenType::SLASH);
             }
         
         // whitespace
