@@ -1,4 +1,5 @@
 #include "Scanner.hpp"
+#include "Token.hpp"
 
 #include <string>
 #include <vector>
@@ -10,7 +11,7 @@ std::vector<Token> Scanner::scanTokens() {
         start = current;
         scanToken();
     }
-    tokens.emplace_back(EOF, "", line);
+    tokens.emplace_back(TokenType EOF, "", line);
     return tokens;
 }
 
