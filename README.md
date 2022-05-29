@@ -5,7 +5,7 @@ by Bob Nystrom!
 Chapter in Progress
 ---
 
-4 - Scanning/Lexing
+5 - Parsing
 
 How To Build
 ---
