@@ -9,7 +9,9 @@ namespace Lox
 {
 class Token {
     public:
-        Token(TokenType, const std::string, std::any, int);
+        Token();
+        Token(TokenType, std::string, int);
+        Token(TokenType, std::string, std::any, int);
         std::string toString();
         std::string literalToString();
     private:

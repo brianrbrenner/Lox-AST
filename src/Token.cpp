@@ -1,11 +1,15 @@
-#include "plox/Token.hpp"
+#include "Token.hpp"
 
 namespace Lox {
-Token::Token(TokenType type, const std::string lexeme, std::any literal, int line) {
+Token::Token(TokenType type, std::string lexeme, std::any literal, int line) {
     this->type = type;
     this->lexeme = lexeme;
     this->literal = literal;
     this->line = line;
+}
+
+Token::Token(TokenType type, std::string lexeme, int line) {
+    Token(type, lexeme, std::any{}, line);
 }
 
 std::string Token::toString() {

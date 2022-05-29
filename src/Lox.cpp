@@ -1,4 +1,4 @@
-#include "plox/Lox.hpp"
+#include "Lox.hpp"
 #include <iostream>
 #include <fstream>
 
