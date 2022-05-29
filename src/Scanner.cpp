@@ -1,5 +1,6 @@
 #include "Scanner.hpp"
 #include "Token.hpp"
+#include "Lox.hpp"
 
 #include <string>
 #include <vector>
@@ -44,6 +45,9 @@ void Scanner::scanToken() {
       case '+': addToken(PLUS); break;
       case ';': addToken(SEMICOLON); break;
       case '*': addToken(STAR); break; 
+      default:
+        Lox::Error(line, "Unexpected character.");
+        break;
     }
 }
 }
