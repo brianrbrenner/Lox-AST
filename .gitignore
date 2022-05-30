@@ -1,4 +1,4 @@
 Ignore folders named build
 build/**
 Build/**
-.cahche/**
+.cache/**
