@@ -3,13 +3,12 @@
 #include "Lox.hpp"
 
 #include <iostream>
-#include <ostream>
 #include <string>
 #include <vector>
 
 namespace Lox {
 
-Scanner::Scanner(std::string source) {
+Scanner::Scanner(std::string source) : source(std::move(source)) {
     keywords = {
         {"and", TokenType::AND},
         {"class", TokenType::CLASS},
@@ -31,7 +30,8 @@ Scanner::Scanner(std::string source) {
 } 
 
 void Scanner::printTokens() {
-    for (std::vector<Token>::iterator it = tokens.begin(); it != tokens.end(); ++it) {
+    // not really working currently
+    for (auto it = tokens.begin(); it != tokens.end(); ++it) {
         std::cout << it->toString();
     }
 }
@@ -71,7 +71,7 @@ void Scanner::number() {
             advance();
         }
     }
-
+    
     addToken(TokenType::NUMBER, std::stod(source.substr(start, current - start)));
 }
 
@@ -100,8 +100,7 @@ void Scanner::identifier() {
     }
 
     const auto text = source.substr(start, current - start);
-    const auto it = keywords.find(text);
-    if (it != keywords.end()) {
+    if (const auto it = keywords.find(text); it != keywords.end()) {
         addToken(it->second);
     } else {
         addToken(TokenType::IDENTIFIER);
@@ -109,7 +108,8 @@ void Scanner::identifier() {
 }
 
 char Scanner::advance() {
-    return source.at(current++);
+    ++current;
+    return source.at(current - 1);
 }
 
 char Scanner::peek() const {
@@ -128,8 +128,12 @@ char Scanner::peekNext() const {
 }
 
 bool Scanner::match(char expected) {
-    if (isAtEnd()) return false;
-    if (source.at(current) != expected) return false;
+    if (isAtEnd()) {
+        return false;
+    }
+    if (source.at(current) != expected) {
+        return false;
+    }    
 
     ++current;
     return true;
@@ -146,8 +150,6 @@ bool Scanner::isAlpha(char c) {
 bool Scanner::isAlphaNumeric(char c) {
     return isAlpha(c) || isDigit(c);
 }
-
-
 
 void Scanner::scanToken() {
     char c = advance();
@@ -209,6 +211,7 @@ void Scanner::scanToken() {
         case '"':
             string();
             break;
+
         // number literal    
         default:
             if (isDigit(c)) {

@@ -20,6 +20,7 @@ void Lox::Error(int line, const std::string &message) {
 void Lox::run(const std::string &source) {
     // run scanner
     Scanner scanner{source};
+    scanner.scanTokens();
     // run parser
     // parse statements
     // interpret statements
@@ -39,8 +40,12 @@ void Lox::runFile(const char* filename) {
     }
 
     run(source);
-    if (HadError)
+    if (HadError) {
         exit(1);
+    }
+    if (HadRuntimeError) {
+        exit(2);
+    }
 }
 
 void Lox::runPrompt() {
