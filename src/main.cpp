@@ -5,11 +5,11 @@
 #include "Lox.hpp"
 
 int main(int argc, char * argv[]) {
-    if (std::strlen(argv[0]) > 1) {
+    if (argc > 2) {
         std::cout << "Usage: jlox [script]";
-    } else if (std::strlen(argv[0]) == 1) {
-        Lox::Lox::runFile(argv[0]);
-        std::ofstream file (argv[0]);
+        exit(1);
+    } else if (argc == 2) {
+        Lox::Lox::runFile(argv[1]);
     } else {
         Lox::Lox::runPrompt();
     }

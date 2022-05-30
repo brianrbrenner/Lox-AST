@@ -3,7 +3,7 @@
 
 #include <string>
 
-#define LOX_VERSION "0.0.1"
+#define PLOX_VERSION "0.0.1"
 
 namespace Lox {
     class Token;

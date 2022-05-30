@@ -1,24 +1,31 @@
 #include "Lox.hpp"
+#include "Scanner.hpp"
+
 #include <iostream>
 #include <fstream>
 
-void Lox::Lox::Report(int line, const std::string &location, const std::string &message) {
+namespace Lox {
+bool Lox::HadError = false;
+bool Lox::HadRuntimeError = false;
+
+void Lox::Report(int line, const std::string &location, const std::string &message) {
     std::cout << "[line " << "] Error" << location << ": " << message;
     HadError = true;
 };
 
-void Lox::Lox::Error(int line, const std::string &message) {
+void Lox::Error(int line, const std::string &message) {
     Report(line, "", message);
 }
 
-void Lox::Lox::run(const std::string &source) {
+void Lox::run(const std::string &source) {
     // run scanner
+    Scanner scanner{source};
     // run parser
     // parse statements
     // interpret statements
 }
 
-void Lox::Lox::runFile(const char* filename) {
+void Lox::runFile(const char* filename) {
     std::ifstream file{filename};
     if (!file.good()) {
        std::printf("Could not open file %s, ", filename);
@@ -36,8 +43,8 @@ void Lox::Lox::runFile(const char* filename) {
         exit(1);
 }
 
-void Lox::Lox::runPrompt() {
-    std::printf("Lox Version >> %s \n", LOX_VERSION);
+void Lox::runPrompt() {
+    std::printf("Lox Version >> %s \n", PLOX_VERSION);
 
     std::string code;
     while(true) {
@@ -50,4 +57,5 @@ void Lox::Lox::runPrompt() {
             break;
         }
     }
+}
 }

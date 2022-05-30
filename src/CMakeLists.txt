@@ -29,4 +29,18 @@ target_sources(plox_repl
     main.cpp
 )
 
-target_link_libraries(plox_repl PRIVATE lox)
+set_target_properties(plox_repl PROPERTIES OUTPUT_NAME "plox")
+
+target_include_directories(plox_repl
+  PUBLIC
+    ${plox_SOURCE_DIR}/include
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_sources(plox_repl
+  PRIVATE
+    main.cpp
+)
+
+target_link_libraries(plox_repl PRIVATE plox)

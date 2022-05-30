@@ -2,7 +2,7 @@
 #define TOKENTYPE
 
 namespace Lox {
-enum TokenType {
+enum class TokenType {
     // Single character TokenType
     LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE, 
     COMMA, DOT, MINUS, PLUS, SEMICOLON, SLASH, STAR,
