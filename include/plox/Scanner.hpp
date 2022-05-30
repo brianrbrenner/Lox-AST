@@ -14,6 +14,7 @@ private:
     void scanToken();
     void addToken(TokenType);
     void addToken(TokenType, std::any);
+    void printTokens();
     void string();
     void number();
     void identifier();

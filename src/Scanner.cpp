@@ -2,6 +2,8 @@
 #include "Token.hpp"
 #include "Lox.hpp"
 
+#include <iostream>
+#include <ostream>
 #include <string>
 #include <vector>
 
@@ -28,12 +30,19 @@ Scanner::Scanner(std::string source) {
     };
 } 
 
+void Scanner::printTokens() {
+    for (std::vector<Token>::iterator it = tokens.begin(); it != tokens.end(); ++it) {
+        std::cout << it->toString();
+    }
+}
+
 std::vector<Token> Scanner::scanTokens() {
     while (!isAtEnd()) {
         start = current;
         scanToken();
     }
     tokens.emplace_back(TokenType::TokenEOF, "", line);
+    printTokens();
     return tokens;
 }
 
