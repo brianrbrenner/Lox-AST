@@ -7,10 +7,13 @@ target_include_directories(plox
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+add_subdirectory(Expr)
+
 target_sources( plox
     PUBLIC
         Token.cpp
         Scanner.cpp
+        Parser.cpp
         Lox.cpp
 )
 

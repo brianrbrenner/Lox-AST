@@ -13,6 +13,8 @@ class Token {
         Token(TokenType, std::string, std::any, int);
         std::string toString();
         std::string literalToString();
+        TokenType getType() const { return type; }
+        int getLine() { return line; }
 
     private:
         TokenType type; 

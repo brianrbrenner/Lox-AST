@@ -108,8 +108,7 @@ void Scanner::identifier() {
 }
 
 char Scanner::advance() {
-    ++current;
-    return source.at(current - 1);
+    return source.at(current++);
 }
 
 char Scanner::peek() const {
