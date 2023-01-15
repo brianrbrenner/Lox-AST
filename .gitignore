@@ -1,4 +1,7 @@
-Ignore folders named build
-build/**
-Build/**
-.cache/**
+
+CMakeCache.txt
+CMakeFiles/*
+Expr/*
+cmake_install.cmake
+.cache/*
+build/*
