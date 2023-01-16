@@ -2,6 +2,7 @@
 #include "Token.hpp"
 #include "Expr/Expr.hpp"
 
+#include <stdexcept>
 #include <vector>
 #include <memory>
 
@@ -24,9 +25,12 @@ private:
     template<typename...Type>
     bool match(Type... types);
 
+    std::unique_ptr<ParseError> error(Token, std::string);
+
     Token peek() const;
     Token advance();
     Token previous() const;
+    Token consume(TokenType, std::string);
 
     bool isAtEnd();
     bool check(TokenType);

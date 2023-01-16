@@ -1,11 +1,14 @@
 #include "Parser.hpp"
 #include "Expr/Expr.hpp"
 #include "Expr/ExprVisitor.hpp"
+#include "Lox.hpp"
 #include "Token.hpp"
 #include "TokenType.hpp"
 #include <algorithm>
 #include <iterator>
 #include <memory>
+#include <stdexcept>
+#include <string_view>
 
 namespace Lox {
 Parser::Parser(std::vector<Token> tokens) : tokens(std::move(tokens)){};
@@ -77,6 +80,18 @@ Token Parser::peek() const { return tokens.at(current); }
 
 Token Parser::previous() const { return tokens.at(current - 1); }
 
+std::unique_ptr<ParseError> Parser::error(Token token, std::string message) {
+    Lox::Error(token, message);
+    return std::make_unique<ParseError>();
+}
+
+Token Parser::consume(TokenType type, std::string message) {
+  if (check(type))
+    return advance();
+
+  throw std::invalid_argument(peek().toString() + " " + message);
+}
+
 std::unique_ptr<Expr> Parser::primary() {
   if (match(TokenType::FALSE))
     return std::make_unique<LiteralExpr>(false);
@@ -90,9 +105,9 @@ std::unique_ptr<Expr> Parser::primary() {
   }
 
   if (match(TokenType::LEFT_PAREN)) {
-      auto expr = expression();
-      consume(TokenType::RIGHT_PAREN, "Expect ')' after expression");
-      return std::make_unique<GroupingExpr>(expr);
+    auto expr = expression();
+    consume(TokenType::RIGHT_PAREN, "Expect ')' after expression");
+    return std::make_unique<GroupingExpr>(expr);
   }
 }
 
