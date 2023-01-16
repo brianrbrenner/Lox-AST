@@ -11,8 +11,14 @@ public:
     Parser(std::vector<Token>);
 
 private:
+    std::unique_ptr<Expr> primary();
     std::unique_ptr<Expr> expression();
+    std::unique_ptr<Expr> term();
+    std::unique_ptr<Expr> factor();
+    std::unique_ptr<Expr> unary();
+    std::unique_ptr<Expr> comparison();
     std::unique_ptr<Expr> equality();
+
     std::vector<Token> tokens;
 
     template<typename...Type>
@@ -20,6 +26,7 @@ private:
 
     Token peek() const;
     Token advance();
+    Token previous() const;
 
     bool isAtEnd();
     bool check(TokenType);
